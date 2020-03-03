@@ -2,7 +2,7 @@
 
 Munnin is a tool to aid in text-driven language-learning. So far, I am only implementing the ability to work with subtitles and videos (similar to Fluentu).
 
-This is not yet a functional app, only a mockup with some components to aid in conceptualizing architecture and features.
+This is not yet a functioning app, only a mockup with some components to aid in conceptualizing architecture and features.
 
 There are so far three main scenes: Library, Add and Reader. The reader is only designed to work with a very specific type of text (subtitles). Different texts (e.g. e-books, news articles) will require different readers because there ae different things one would like to do with such texts.
 
@@ -30,7 +30,7 @@ Munnin does not use a scheduling algorithm at all.
 
 Instead, Munnin estimates how likely you are to forget each of the words you are learning at a given time using a supervised learning algorithm. Within Munnin this is known as the "familiarity". The algorithm then presents this metric to the user and has different card order options depending on what the user wants to do. Munnin is designed to empower users and treat them like adults, not like slaves of some know-it-all algorithm.
 
-**Problem: The SRS model sucks for automating flashcard creation from language exposure**
+**Problem: No good way of automating flashcard creation from language exposure**
 
 There is no reasonable way in programs such as Anki or Memrise to efficiently automate the creation of high-quality flashcards from texts. Let me explain:
 
@@ -38,7 +38,7 @@ There is no reasonable way in programs such as Anki or Memrise to efficiently au
 
 2. It is also possible to simply export words from software like LWT or LingQ. This approach is in my experience, a nightmare from an effective learning perspective. It rests on two faulty assumptions: that a word is something that can be concisely and completely defined and that a word is something that can be learnt. Words tend to have many uses, and often appear in collocation with other words, which is why there are mountains of research showing that memorizing word lists is an inefficient way of acquiring vocabulary. Furthermore, it is not clear what 'learning a word' means. Is it just passive recognition? Knowing how to use it? Knowing every collocation? 
 
-Learning a word is therefore too complex to fit in a flashcard, not to mention basically impossible to automate, since word flashcards tend to require constant tweaking and expansion.
+Learning a word is therefore too complex to fit in a flashcard, not to mention basically impossible to automate, since word flashcards tend to require constant tweaking and expansion. In this sense, studying vocabulary in the context of a chunk of text is much better.
 
 **Solution: Using data to filter incoming flashcards**
 
