@@ -1,0 +1,48 @@
+
+$work-area-grey: #262626;
+$section-link-color: #999999;
+
+$mainNavigation:   #404040;
+
+$lowAttentionBackground: #333; // i.e. background for the app
+$lowAttentionElements: #838383; // E.g sections
+$lowAttentionElementsActive: #f2f2f2; // Hover / selected
+
+$midAttentionBackground: #252526; // Mid attention area
+$midAttentionElements: #cbcbcb; // E.g sections
+$midAttentionElementsActive: #f2f2f2; // Hover / selected
+
+$activeAreaBackground: #1E1E1E; // Background, in an area where we want attention
+$activeAreaForeground: #D4D4D4; // For text in attention area
+
+$guide: #3c3c3c; 
+
+@mixin colorSchemeBasedOnAttention($backgroundColor, $color, $backgroundColorActive, $colorActive) {
+    background-color: $backgroundColor;
+    color: $color;
+    
+    &:hover {
+        background-color: $backgroundColorActive;
+        color: $colorActive;
+    }
+
+}
+
+@mixin midAttentionColorScheme {
+    @include colorSchemeBasedOnAttention($midAttentionBackground, $midAttentionElements, $midAttentionBackground, $midAttentionElementsActive)
+    }
+
+
+@mixin midAttentionAreaWithMoreHighlight {
+    @include colorSchemeBasedOnAttention($midAttentionBackground, $midAttentionElements, $activeAreaBackground, $activeAreaForeground)
+}
+
+@mixin lowAttentionColorScheme {
+    background-color: $lowAttentionBackground;
+    color: $lowAttentionElements;
+}
+
+@mixin activeArea {
+    background-color: $activeAreaBackground;
+    color: $activeAreaForeground;
+}

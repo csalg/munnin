@@ -1,0 +1,17 @@
+@import '../colors.scss';
+
+.iconAndName {
+    font-size: 0.7rem;
+    padding: 0 1rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        color: $lowAttentionElementsActive
+    }
+
+    span {
+        padding-left: 0.3rem;
+    }
+}

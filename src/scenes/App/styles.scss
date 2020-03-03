@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import '../../common/colors.scss';
+
+
+* {
+    box-sizing: border-box;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-items: stretch;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: $lowAttentionBackground;
+    @include midAttentionColorScheme;
+    
+    .work-area {
+        flex-grow: 1;
+        min-width: 100vw;
+        display: flex;
+        @include midAttentionColorScheme;
+    }
+}

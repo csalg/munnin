@@ -1,0 +1,72 @@
+@import '../../../../common/colors.scss';
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
+
+.reader-study {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+
+    .card-content {
+        flex-grow: 1;
+        display:flex;
+        flex-direction: column;
+        flex-grow: 62;
+
+        background-color: $activeAreaBackground;
+        color: $activeAreaForeground;
+        padding-top: 0.5rem;
+
+        .card-inner {
+            display: flex;
+            justify-content: center;
+            font-size: 1.2rem;
+            padding-top: 0.3rem;
+
+            .card-inner-content {
+                min-width: 650px;
+            }
+        }
+
+        .card-front {
+            border-bottom: 1px solid $guide;
+            flex-grow: 62;
+            font-family: 'Source Sans Pro', ;
+            font-size: 1.5rem;
+
+        }
+
+        .card-back {
+            flex-grow: 38;
+            color: $midAttentionElements;
+            font-size: 1rem;
+        }
+
+
+    }
+
+    .card-actions {
+        flex-grow: 38;
+        background-color: $midAttentionBackground;
+        color: $midAttentionElements;
+    }
+}
+
+.card-answer-radio {
+    padding-left: 1.2rem;
+    span {
+        padding-right: 0.3rem;
+    }
+}
+
+.card-actions-nav {
+    display: flex;
+    align-items: center;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    @include lowAttentionColorScheme;
+    height: 3rem;
+}

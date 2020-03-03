@@ -1,0 +1,33 @@
+@import '../../../../common/colors.scss';
+
+.reader-nav {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    @include lowAttentionColorScheme;
+
+}
+
+.reader-tab {
+    // text-transform: uppercase;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem 0.5rem 0.5rem;
+    border: thin solid $guide;
+
+    span {
+        display: none;
+        padding-left: 0.3rem;
+
+    }
+
+    &:hover {
+        @include activeArea;
+        span {
+            display: inline-block;
+        }
+    }
+}
+
+.reader-tab-active {
+    @include activeArea;
+}
