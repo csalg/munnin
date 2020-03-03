@@ -18,29 +18,37 @@ Library view displaying the familiarity with different texts:
 
 Munnin specifically addresses the following problems that I have encountered trying to learn languages with software:
 
-**Problem: SRS solutions are too rigid**
+**Problem: SRS scheduling solutions are too rigid**
 
-SRS solutions use a stateless projective scheduling algorithm. That is, they will look at how well your memory worked last time, and will then schedule your next review. Although a great idea in theory, in practice this is a very rigid regime with limited practicality. What happens when a student has free time at intervals different to what the algorithm expects (e.g. more time on the weekends)? Or what about wanting to strengthen only vocabulary for specific areas?
+Existing SRS solutions use a stateless projective scheduling algorithm. That is, they will look at how well your memory worked last time, and will then schedule your next review.
+
+Although a great idea in theory, in practice this is a very rigid regime with limited practicality. What happens when a student has free time at intervals different to what the algorithm expects (e.g. more time on the weekends)? Or what about wanting to strengthen only vocabulary for specific areas (e.g. before a test?)
 
 **Solution: A retrospective SRS algorithm**
 
-Munnin does not use scheduling algorithm. Instead, Munnin estimates how likely you are to forget each of the words you are learning at a given time using a supervised learning algorithm. The algorithm then allows the user to behave like an adult with this information and decide what to revise whenever s/he has free time.
+Munnin does not use a scheduling algorithm at all. 
+
+Instead, Munnin estimates how likely you are to forget each of the words you are learning at a given time using a supervised learning algorithm. Within Munnin this is known as the "familiarity". The algorithm then presents this metric to the user and has different card order options depending on what the user wants to do. Munnin is designed to empower users and treat them like adults, not like slaves of some know-it-all algorithm.
 
 **Problem: The SRS model sucks for automating flashcard creation from language exposure**
 
-There is no reasonable way in programs such as Anki or Memrise to efficiently automate the creation of flashcards from texts:
+There is no reasonable way in programs such as Anki or Memrise to efficiently automate the creation of high-quality flashcards from texts. Let me explain:
 
-It is possible to create flashcards from subtitles with minimal effort - but then all of those flashcards will probably include a lot of text which is already known and the user will have to discard a lot of cards. Also, many of those cards will contain related vocabulary, so some words will be shown many more times than others. If each word is a 'concept' then each card has 10+ concepts, and SRS algorithms are not designed for this situation and don't work well. If the issue isn't obvious, a 45min episode is 600+ cards, so a season is ~10,000. an intermediate learner might only really need to work through a tenth of those in order to assimilate most of the vocabulary.
+1. It is possible to create flashcards from subtitles with minimal effort. Programs like SubtitleMemorize automate mapping captions to flashcards. While this is great (I have used this a lot), this generates around 700 cards per hour of video - a lot of review work. As the level of knowledge of a language increases, the meaning of more and more of those flashcards is already known and therefore useless. Furthermore, the speed at which a student can comprehend media of any type also increases, so more such flashcards are generated. In summary, this approach is a good idea but it generates a lot of work.
 
-It is also possible to simply export words from software like LWT or LingQ. This approach is just as problematic. Words occur in a context in the wild, and there are mountains of studies showing empirically that rote memorization of word lists outside their context doesn't work. Corollary to that is that words have several meanings and occur in collocations, so making a good word card is actually not trivial.
+2. It is also possible to simply export words from software like LWT or LingQ. This approach is in my experience, a nightmare from an effective learning perspective. It rests on two faulty assumptions: that a word is something that can be concisely and completely defined and that a word is something that can be learnt. Words tend to have many uses, and often appear in collocation with other words, which is why there are mountains of research showing that memorizing word lists is an inefficient way of acquiring vocabulary. Furthermore, it is not clear what 'learning a word' means. Is it just passive recognition? Knowing how to use it? Knowing every collocation? 
 
-**Solution: Semi-automatic flashcards**
+Learning a word is therefore too complex to fit in a flashcard, not to mention basically impossible to automate, since word flashcards tend to require constant tweaking and expansion.
 
-Munnin solves this by creating sentence-flashcards but also tracking the exposure of each word inside the cards. It works like this:
+**Solution: Using data to filter incoming flashcards**
 
-1. A new subtitle file is added. Each caption is a potential card.
-2. Munnin keeps a table of all the words which the user is learning and all the words which are known (similar to LingQ and LWT). Munnin now uses this data to make a familiarity assessment in each card. Cards where all vocabulary is known will be discarded (this immediately gets rid of a lot of fluff). Cards where some vocabulary is new are given priority. Cards with only some unfamiliar language (previously encountered) are ranked by familiarity.
-3. As cards get revised, users can mark unfamiliar vocabulary and known vocabulary. This can be done quite efficiently by clicking on words. Future cards get their familiarity reassessed before they are shown. This also discards many future cards.
+So basically what we would like is something like what we have with subtitle cards, but with the ability to efficiently discard the fluff. Munnin filters new cards in two phases like this:
+
+1. An advanced learner that has been using Munnin for a while will have a rather large table of known words within the system (same as LingQ and LWT). Upon loading a pair of subtitles, the system can immediately discard cards where all vocabulary is already known by simply parsing the text and looking up words in its known table. 
+2. After the first filtering phase, the system produces a sequence of cards which prioritizes cards with new words. The user can quickly discard these cards or mark some words as 'learning' words (which are stored elsewhere and on which progress is tracked). This will have an effect on the rest of the sequence, which will be dynamically reassessed.
+
+So after importing the subtitles and working through a dozen or so flashcards, an advanced learner will have greatly reduced the number of flashcards to study.
+
 
 **Bonus: Video player**
 
