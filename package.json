@@ -8,7 +8,7 @@
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
     "color-blend": "^2.0.9",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "node-tokenizer": "0.0.0",
     "pipeline-js": "^1.0.2",
     "react": "^16.13.0",
